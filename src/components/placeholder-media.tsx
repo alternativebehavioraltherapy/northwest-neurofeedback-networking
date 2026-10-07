@@ -5,7 +5,7 @@ export function PhotoPlaceholder({
   photo,
 }: {
   personId: string;
-  photo?: { src: string; alt: string };
+  photo?: { src: string; alt: string; focus?: string };
 }) {
   if (photo) {
     return (
@@ -18,7 +18,7 @@ export function PhotoPlaceholder({
         <img
           src={photo.src}
           alt={photo.alt}
-          className="h-60 w-full object-cover object-top"
+          className={`h-64 w-full object-cover ${photo.focus ?? "object-top"}`}
         />
       </NnnEdit>
     );
@@ -61,7 +61,7 @@ export function LogoPlaceholder({
           alt={logo.alt}
           className={
             logo.banner
-              ? "w-full rounded-md border border-line object-cover"
+              ? "h-28 w-full rounded-md border border-line object-cover object-center"
               : logo.wide
                 ? "h-10 w-auto max-w-[14rem] object-contain object-left"
                 : "h-16 w-16 object-contain"

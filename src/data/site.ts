@@ -90,7 +90,7 @@ export type PersonCard = {
   sites: { slug: string; href: string; label: string }[];
   disclaimer?: string;
   contactLines?: string[];
-  photo?: { src: string; alt: string };
+  photo?: { src: string; alt: string; focus?: string };
   logos?: { src: string; alt: string; wide?: boolean; banner?: boolean }[];
 };
 
@@ -236,6 +236,7 @@ export const PEOPLE: PersonCard[] = [
     photo: {
       src: peopleSrc("tanya-stewart.jpg"),
       alt: "Portrait of Tanya M. Stewart",
+      focus: "object-[center_28%]",
     },
     logos: [
       {

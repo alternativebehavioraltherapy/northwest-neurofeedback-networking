@@ -28,6 +28,7 @@ function Home() {
             <h1 className="mt-3 font-display text-4xl text-navy sm:text-5xl">
               Northwest Neurofeedback Networking
             </h1>
+            <HeroVisual className="mt-8 lg:hidden" />
             <NnnEdit
               id="org.mission_paragraph"
               status="CONFIRMED"
@@ -65,12 +66,7 @@ function Home() {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center lg:justify-end">
-            <BrandMark
-              alt="NNN wordmark with an EEG wave through the letters"
-              className="w-full max-w-md object-contain"
-            />
-          </div>
+          <HeroVisual className="hidden lg:block" />
         </div>
       </section>
 
@@ -105,6 +101,23 @@ function Home() {
         heading="What neurofeedback can look like"
       />
     </PageShell>
+  );
+}
+
+function HeroVisual({ className = "" }: { className?: string }) {
+  const photo = photoById("cap-side");
+  return (
+    <div className={`mx-auto w-full max-w-lg ${className}`}>
+      <BrandMark
+        alt="NNN wordmark with an EEG wave through the letters"
+        className="mx-auto w-full max-w-[15rem] object-contain sm:max-w-xs"
+      />
+      <img
+        src={photo.src}
+        alt={photo.alt}
+        className="mt-2 aspect-[3/2] w-full object-cover object-[58%_center] [mask-image:radial-gradient(ellipse_at_center,black_58%,transparent_88%)] sm:aspect-[4/3] sm:object-center lg:aspect-[5/4]"
+      />
+    </div>
   );
 }
 
