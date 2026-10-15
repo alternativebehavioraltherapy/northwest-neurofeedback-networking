@@ -61,7 +61,7 @@ export function LogoPlaceholder({
           alt={logo.alt}
           className={
             logo.banner
-              ? "h-28 w-full rounded-md border border-line object-cover object-center"
+              ? "mx-auto block h-auto w-auto max-h-44 max-w-full rounded-md border border-line object-contain"
               : logo.wide
                 ? "h-10 w-auto max-w-[14rem] object-contain object-left"
                 : "h-16 w-16 object-contain"
