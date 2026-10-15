@@ -130,7 +130,7 @@ function HiddenPersonHooks() {
       <NnnEdit
         id="people.stewart.credential_line"
         status="CONFIRMED"
-        note="Certified Brain Health Coach; role listed as Neurofeedback Practitioner per member bio"
+        note="Neurofeedback Practitioner listed first; Certified Brain Health Coach second"
       />
       <NnnEdit
         id="people.stewart.condition_list"

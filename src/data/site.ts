@@ -229,8 +229,8 @@ export const PEOPLE: PersonCard[] = [
   {
     id: "stewart",
     name: "Tanya M. Stewart",
-    credentials: "Certified Brain Health Coach",
-    role: "Neurofeedback Practitioner",
+    credentials: "Neurofeedback Practitioner",
+    role: "Certified Brain Health Coach",
     practice: "NeuroFLEX General Wellness Neurofeedback LLC",
     city: "Battle Ground, Washington",
     photo: {
