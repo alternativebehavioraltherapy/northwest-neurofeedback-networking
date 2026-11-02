@@ -9,19 +9,18 @@ export type Lecture = {
 };
 
 /*
-  NNN-EDIT:lectures.catalog | status:PLACEHOLDER | note:members add title, speaker, description, youtubeUrl; set published true to show
-  The lead pin is reserved — do not publish into that slot until the planned first video arrives.
+  NNN-EDIT:lectures.catalog | status:CONFIRMED | note:lead is Joshua Moore Trauma Class Pt 1; ward ORPARC stays second
 */
 
 export const LECTURES: Lecture[] = [
   {
-    id: "reserved-lead",
-    title: "Featured lecture",
-    speaker: "NNN member",
+    id: "moore-trauma-class-pt1",
+    title: "Trauma Class Pt 1",
+    speaker: "Joshua Moore, MA, LMHC, BCN",
     description:
-      "This first slot is reserved for an upcoming NNN lecture. The ORPARC feature below is published in the meantime.",
-    youtubeUrl: "",
-    published: false,
+      "A class on neurofeedback related to history, practice, and research for trauma, for survivors and providers. Educational only — not a treatment claim by NNN.",
+    youtubeUrl: "https://www.youtube.com/watch?v=t6FieaUsSek",
+    published: true,
     pin: "lead",
   },
   {

@@ -25,7 +25,7 @@ export const NAV = [
   { to: "/neurofeedback", label: "Learn" },
   { to: "/advocate", label: "Advocate" },
   { to: "/people", label: "Team" },
-  { to: "/lectures", label: "Lectures", badge: "Soon" },
+  { to: "/lectures", label: "Lectures" },
   { to: "/resources", label: "Resources" },
   { to: "/contact", label: "Contact" },
 ] as const;

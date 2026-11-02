@@ -24,35 +24,29 @@ function LecturesPage() {
         deck="Recorded talks and short courses from NNN members. Educational only — not treatment and not a consult."
       />
 
-      <section className="border-b border-line bg-paper">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3 px-4 py-5 sm:px-6">
-          <span className="rounded-full bg-cream px-3 py-1 text-xs font-semibold uppercase tracking-widest text-navy">
-            Coming soon
-          </span>
-          <p className="text-sm text-muted">
-            The first slot stays open for a planned NNN lecture. Published
-            member videos follow it.
-          </p>
-        </div>
-      </section>
-
       <div className="mx-auto max-w-5xl space-y-8 px-4 py-10 sm:px-6">
         <NnnEdit
           id="lectures.catalog"
           status="CONFIRMED"
-          note="lead slot reserved; ward ORPARC video is second"
+          note="lead is Trauma Class Pt 1; ward ORPARC video is second"
         >
           <div className="space-y-8">
-            <EmptyLectureSlot
-              label={LEAD_LECTURE?.title ?? "Featured lecture"}
-              hint={
-                LEAD_LECTURE?.description ??
-                "Reserved for the next NNN lecture."
-              }
-            />
-            {lectures.map((lecture) => (
-              <LectureCard key={lecture.id} lecture={lecture} />
-            ))}
+            {LEAD_LECTURE?.published ? (
+              <LectureCard lecture={LEAD_LECTURE} />
+            ) : (
+              <EmptyLectureSlot
+                label={LEAD_LECTURE?.title ?? "Featured lecture"}
+                hint={
+                  LEAD_LECTURE?.description ??
+                  "Reserved for the next NNN lecture."
+                }
+              />
+            )}
+            {lectures
+              .filter((lecture) => lecture.id !== LEAD_LECTURE?.id)
+              .map((lecture) => (
+                <LectureCard key={lecture.id} lecture={lecture} />
+              ))}
           </div>
         </NnnEdit>
       </div>
