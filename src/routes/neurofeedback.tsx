@@ -1,9 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ExtLink, NnnEdit } from "@/components/nnn-edit";
 import { PageHeader, PageShell } from "@/components/page-shell";
 import { PhotoCarousel } from "@/components/photo-carousel";
 import { CONDITIONS, type ConditionSection } from "@/data/conditions";
-import { LEAD_LECTURE, youtubeEmbedId } from "@/data/lectures";
+import { LEAD_LECTURE } from "@/data/lectures";
 import {
   OVERVIEW_CITATIONS,
   OVERVIEW_POINTS,
@@ -100,31 +100,26 @@ function NeurofeedbackPage() {
 
 function FeaturedLecture() {
   const lecture = LEAD_LECTURE;
-  const embedId = lecture ? youtubeEmbedId(lecture.youtubeUrl) : null;
-  if (!lecture?.published || !embedId) return null;
+  if (!lecture?.published) return null;
 
   return (
-    <section id="featured-lecture" className="border-b border-line bg-paper">
+    <section className="border-b border-line bg-paper">
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <p className="text-xs font-medium uppercase tracking-widest text-teal-dark">
           Featured lecture
         </p>
-        <h2 className={`mt-2 ${LEARN_TITLE}`}>{lecture.title}</h2>
+        <h2 className="mt-2 font-display text-3xl text-navy">{lecture.title}</h2>
         <p className="mt-2 text-sm font-medium text-teal-dark">{lecture.speaker}</p>
-        <div className="mt-6 overflow-hidden rounded-lg border border-line bg-navy-deep">
-          <div className="aspect-video">
-            <iframe
-              title={lecture.title}
-              src={`https://www.youtube-nocookie.com/embed/${embedId}`}
-              className="h-full w-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
         <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink">
           {lecture.description}
         </p>
+        <Link
+          to="/lectures"
+          hash={lecture.id}
+          className="mt-6 inline-flex min-h-11 items-center rounded-md bg-navy px-5 py-2.5 text-sm font-medium text-paper no-underline hover:bg-navy-deep"
+        >
+          Watch the lecture
+        </Link>
       </div>
     </section>
   );

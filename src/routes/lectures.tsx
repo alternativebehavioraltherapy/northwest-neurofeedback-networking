@@ -28,11 +28,13 @@ function LecturesPage() {
         <NnnEdit
           id="lectures.catalog"
           status="CONFIRMED"
-          note="lead is Trauma Class Pt 1; ward ORPARC video is second"
+          note="player lives here; Learn links to this card"
         >
           <div className="space-y-8">
-            {LEAD_LECTURE?.published ? (
-              <LectureCard lecture={LEAD_LECTURE} linkToLearn />
+            {lectures.length ? (
+              lectures.map((lecture) => (
+                <LectureCard key={lecture.id} lecture={lecture} />
+              ))
             ) : (
               <EmptyLectureSlot
                 label={LEAD_LECTURE?.title ?? "Featured lecture"}
@@ -42,11 +44,6 @@ function LecturesPage() {
                 }
               />
             )}
-            {lectures
-              .filter((lecture) => lecture.id !== LEAD_LECTURE?.id)
-              .map((lecture) => (
-                <LectureCard key={lecture.id} lecture={lecture} />
-              ))}
           </div>
         </NnnEdit>
       </div>
@@ -94,17 +91,11 @@ function LecturesPage() {
   );
 }
 
-function LectureCard({
-  lecture,
-  linkToLearn = false,
-}: {
-  lecture: Lecture;
-  linkToLearn?: boolean;
-}) {
-  const embedId = linkToLearn ? null : youtubeEmbedId(lecture.youtubeUrl);
+function LectureCard({ lecture }: { lecture: Lecture }) {
+  const embedId = youtubeEmbedId(lecture.youtubeUrl);
 
   return (
-    <article className="overflow-hidden rounded-lg border border-line bg-paper">
+    <article id={lecture.id} className="overflow-hidden rounded-lg border border-line bg-paper">
       {embedId ? (
         <div className="aspect-video bg-navy-deep">
           <iframe
@@ -115,20 +106,13 @@ function LectureCard({
             allowFullScreen
           />
         </div>
-      ) : null}
+      ) : (
+        <LectureFrame label="Video pending" />
+      )}
       <div className="p-5 sm:p-6">
         <h2 className="font-display text-2xl text-navy">{lecture.title}</h2>
         <p className="mt-1 text-sm font-medium text-teal-dark">{lecture.speaker}</p>
         <p className="mt-3 text-base leading-relaxed text-ink">{lecture.description}</p>
-        {linkToLearn ? (
-          <Link
-            to="/neurofeedback"
-            hash="featured-lecture"
-            className="mt-5 inline-flex min-h-11 items-center rounded-md bg-navy px-5 py-2.5 text-sm font-medium text-paper no-underline hover:bg-navy-deep"
-          >
-            Watch on the Learn page
-          </Link>
-        ) : null}
       </div>
     </article>
   );
