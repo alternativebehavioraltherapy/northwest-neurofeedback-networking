@@ -104,7 +104,7 @@ function FeaturedLecture() {
   if (!lecture?.published || !embedId) return null;
 
   return (
-    <section className="border-b border-line bg-paper">
+    <section id="featured-lecture" className="border-b border-line bg-paper">
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <p className="text-xs font-medium uppercase tracking-widest text-teal-dark">
           Featured lecture

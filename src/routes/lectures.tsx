@@ -32,7 +32,7 @@ function LecturesPage() {
         >
           <div className="space-y-8">
             {LEAD_LECTURE?.published ? (
-              <LectureCard lecture={LEAD_LECTURE} />
+              <LectureCard lecture={LEAD_LECTURE} linkToLearn />
             ) : (
               <EmptyLectureSlot
                 label={LEAD_LECTURE?.title ?? "Featured lecture"}
@@ -94,8 +94,14 @@ function LecturesPage() {
   );
 }
 
-function LectureCard({ lecture }: { lecture: Lecture }) {
-  const embedId = youtubeEmbedId(lecture.youtubeUrl);
+function LectureCard({
+  lecture,
+  linkToLearn = false,
+}: {
+  lecture: Lecture;
+  linkToLearn?: boolean;
+}) {
+  const embedId = linkToLearn ? null : youtubeEmbedId(lecture.youtubeUrl);
 
   return (
     <article className="overflow-hidden rounded-lg border border-line bg-paper">
@@ -109,13 +115,20 @@ function LectureCard({ lecture }: { lecture: Lecture }) {
             allowFullScreen
           />
         </div>
-      ) : (
-        <LectureFrame label="Video pending" />
-      )}
+      ) : null}
       <div className="p-5 sm:p-6">
         <h2 className="font-display text-2xl text-navy">{lecture.title}</h2>
         <p className="mt-1 text-sm font-medium text-teal-dark">{lecture.speaker}</p>
         <p className="mt-3 text-base leading-relaxed text-ink">{lecture.description}</p>
+        {linkToLearn ? (
+          <Link
+            to="/neurofeedback"
+            hash="featured-lecture"
+            className="mt-5 inline-flex min-h-11 items-center rounded-md bg-navy px-5 py-2.5 text-sm font-medium text-paper no-underline hover:bg-navy-deep"
+          >
+            Watch on the Learn page
+          </Link>
+        ) : null}
       </div>
     </article>
   );
